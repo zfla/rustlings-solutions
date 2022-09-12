@@ -16,11 +16,13 @@
 //
 // Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
+// tl;dr, rust needs to know how much space a type takes up, which doesn't work for recursive types
+// a box is used since we know for sure the size of the box
 
 #[derive(PartialEq, Debug)]
 pub enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),
     Nil,
 }
 
@@ -32,12 +34,14 @@ fn main() {
     );
 }
 
+use crate::List::{Cons, Nil};
+
 pub fn create_empty_list() -> List {
-    todo!()
+    Nil
 }
 
 pub fn create_non_empty_list() -> List {
-    todo!()
+    Cons(1, Box::new(Cons(3, Box::new(Cons(1, Box::new(Nil))))))
 }
 
 #[cfg(test)]

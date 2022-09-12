@@ -4,11 +4,12 @@
 //
 // Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
-struct Book {
-    author: &str,
-    title: &str,
+// we want to use lifetime annotations when passing references into functions or structs
+
+struct Book<'a> {
+    author: &'a str,
+    title: &'a str,
 }
 
 fn main() {
