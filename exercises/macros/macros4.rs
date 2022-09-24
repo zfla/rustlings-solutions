@@ -3,10 +3,14 @@
 
 // I AM NOT DONE
 
+// visit 
+// https://veykril.github.io/tlborm/syntax-extensions.html
+// for more details on macros
+
 macro_rules! my_macro {
     () => {
         println!("Check out my macro!");
-    }
+    }; // required to separate the different "arms"
     ($val:expr) => {
         println!("Look at this other macro: {}", $val);
     }
