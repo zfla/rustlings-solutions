@@ -35,10 +35,22 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of Person
 // Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
+// annotations are required
 
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        let s_vec = s.splitn(2, ",").collect::<Vec<&str>>(); // splitn() splits a number of times with a delimeter
+        let name = s_vec[0];
+        if name.is_empty() {
+            Person::default()
+        } else if let Some(age) = s_vec.get(1) { // get() returns a reference to an element, given its index
+            match age.parse() { // match statement allows for more clean control flow of the code
+                Ok(age) => Person { name: name.into(), age },
+                Err(_) => Person::default()
+            }
+        } else {
+            Person::default()
+        }
     }
 }
 
